@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="jlink" build-on-make="true" name="JLink">
+    <output-path>$PROJECT_DIR$/out/artifacts/JLink</output-path>
+    <root id="root">
+      <element id="module-output" name="jwtf" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-controls:16" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-controls:mac:16" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-graphics:16" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-graphics:mac:16" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-base:16" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-base:mac:16" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-fxml:16" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-fxml:mac:16" />
+      <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.7" />
+    </root>
+  </artifact>
+</component>

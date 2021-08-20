@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" stylesheets="@application.css"
+      xmlns="http://javafx.com/javafx/16" fx:controller="de.buzzwordchief.jwtf.MainController">
+    <children>
+        <MenuBar>
+            <menus>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#forceUpdate" fx:id="forceUpdateButton" text="Force Update "/>
+                        <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="About"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <TextField fx:id="searchField" disable="true" onAction="#handleSearch" promptText="POJO">
+            <font>
+                <Font size="17.0"/>
+            </font>
+        </TextField>
+        <VBox fx:id="loadingContainer" alignment="CENTER" VBox.vgrow="ALWAYS">
+            <children>
+                <HBox alignment="CENTER">
+                    <children>
+                        <ProgressIndicator>
+                            <HBox.margin>
+                                <Insets bottom="4.0" left="4.0" right="4.0" top="4.0"/>
+                            </HBox.margin>
+                        </ProgressIndicator>
+                    </children>
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </HBox>
+            </children>
+        </VBox>
+        <ListView fx:id="abbreviationList" VBox.vgrow="ALWAYS" focusTraversable="false">
+            <VBox.margin>
+                <Insets/>
+            </VBox.margin>
+        </ListView>
+    </children>
+</VBox>
