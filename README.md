@@ -1,4 +1,5 @@
-   _ _    _ ___________
+```
+_ _    _ ___________
   (_) |  | |_   _|  ___|
    _| |  | | | | | |_
   | | |/\| | | | |  _|
@@ -22,4 +23,5 @@ Feature todos:
 Current version 0.9.0 -> not production ready! Please report bugs if you find any, thx.
 
 Screenshot
+```
 <img width="562" alt="Showcase" src="https://user-images.githubusercontent.com/11695209/138591045-c68438c1-13db-490c-8949-2093443a5bcd.png">
