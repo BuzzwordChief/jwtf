@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class JWTFApplication extends Application {
 
-    static final SemanticVersion VERSION = new SemanticVersion(0, 9, 0);
+    static final SemanticVersion VERSION = new SemanticVersion(0, 9, 1);
 
     public static void main(String[] args) {
         launch();
