@@ -16,8 +16,8 @@ import javafx.scene.layout.VBox;
 import java.util.List;
 
 public class MainController {
+    private final static Clipboard clipboard = Clipboard.getSystemClipboard();
     private AcronymService acronymService;
-
     @FXML
     private TextField        searchField;
     @FXML
@@ -26,8 +26,6 @@ public class MainController {
     private VBox             loadingContainer;
     @FXML
     private MenuItem         forceUpdateButton;
-
-    private final static Clipboard clipboard = Clipboard.getSystemClipboard();
 
     //
     // FXML Methoden (Handler, ...)
