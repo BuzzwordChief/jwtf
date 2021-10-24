@@ -8,6 +8,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 import java.util.List;
@@ -23,6 +26,8 @@ public class MainController {
     private VBox             loadingContainer;
     @FXML
     private MenuItem         forceUpdateButton;
+
+    private final static Clipboard clipboard = Clipboard.getSystemClipboard();
 
     //
     // FXML Methoden (Handler, ...)
@@ -99,5 +104,12 @@ public class MainController {
             parent.getChildren().remove(abbreviationList);
             parent.getChildren().add(loadingContainer);
         });
+    }
+
+    @FXML
+    private void handleCopy(MouseEvent ignored) {
+        final ClipboardContent content = new ClipboardContent();
+        content.putString(abbreviationList.getFocusModel().getFocusedItem());
+        clipboard.setContent(content);
     }
 }
