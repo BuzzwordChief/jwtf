@@ -37,6 +37,32 @@ public class AcronymService {
         }
     }
 
+    private static double diceCoefficient(String s1, String s2) {
+        s1 = s1.toLowerCase();
+        s2 = s2.toLowerCase();
+
+        Set<String> nx = new HashSet<>();
+        Set<String> ny = new HashSet<>();
+
+        getDiceCoefficientTupleSet(s1, nx);
+        getDiceCoefficientTupleSet(s2, ny);
+
+        Set<String> intersection = new HashSet<>(nx);
+        intersection.retainAll(ny);
+        double totcombigrams = intersection.size();
+
+        return (2 * totcombigrams) / (nx.size() + ny.size());
+    }
+
+    private static void getDiceCoefficientTupleSet(String s1, Set<String> nx) {
+        for (int i = 0; i < s1.length() - 1; i++) {
+            char   x1  = s1.charAt(i);
+            char   x2  = s1.charAt(i + 1);
+            String tmp = "" + x1 + x2;
+            nx.add(tmp);
+        }
+    }
+
     void updateData() {
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -55,11 +81,14 @@ public class AcronymService {
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Failed to update database");
-            alert.setContentText("""
-                                         While updating the acronym database an error occurred.
-                                         Please check your internet connection.""");
+            Platform.runLater(() -> {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Failed to update database");
+                alert.setContentText("""
+                                             While updating the acronym database an error occurred.
+                                             Please check your internet connection.""");
+                alert.show();
+            });
         }
     }
 
@@ -109,8 +138,15 @@ public class AcronymService {
             }
 
             setData(data);
-        } catch (IOException e) {
-            // TODO display info to the user
+        } catch (IOException | JsonSyntaxException e) {
+            Platform.runLater(() -> {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Failed to load local data");
+                alert.setContentText("""
+                                             While loading the local data an error occurred.
+                                             We will try to update via internet.""");
+                alert.show();
+            });
             updateData();
         }
     }
@@ -131,32 +167,6 @@ public class AcronymService {
                                 You can still use the program without being able to write to disk""");
                 alert.show();
             });
-        }
-    }
-
-    private static double diceCoefficient(String s1, String s2) {
-        s1 = s1.toLowerCase();
-        s2 = s2.toLowerCase();
-
-        Set<String> nx = new HashSet<>();
-        Set<String> ny = new HashSet<>();
-
-        getDiceCoefficientTupleSet(s1, nx);
-        getDiceCoefficientTupleSet(s2, ny);
-
-        Set<String> intersection = new HashSet<>(nx);
-        intersection.retainAll(ny);
-        double totcombigrams = intersection.size();
-
-        return (2 * totcombigrams) / (nx.size() + ny.size());
-    }
-
-    private static void getDiceCoefficientTupleSet(String s1, Set<String> nx) {
-        for (int i = 0; i < s1.length() - 1; i++) {
-            char   x1  = s1.charAt(i);
-            char   x2  = s1.charAt(i + 1);
-            String tmp = "" + x1 + x2;
-            nx.add(tmp);
         }
     }
 }
